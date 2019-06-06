@@ -1,0 +1,12 @@
+{
+    "name": "gordondu/php-tiny-mvc",
+    "description": "Php Tiny MVC",
+    "type": "library",
+    "authors": [
+        {
+            "name": "pndgz",
+            "email": "pndgz@163.com"
+        }
+    ],
+    "require": {}
+}
