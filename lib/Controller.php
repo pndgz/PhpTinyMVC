@@ -2,7 +2,9 @@
 
 namespace PhpTinyMVC;
 
-require_once("Mustache.php");
+use Mustache_Engine;
+use Mustache_Loader_FilesystemLoader;
+use Mustache_Loader_CascadingLoader;
 
 class Controller {
 	private $debug = false;
@@ -122,7 +124,9 @@ class Controller {
 			$partialsLoader->addLoader($partialLoader);
 		}
 		$mustTemplate->setPartialsLoader($partialsLoader);
-		$mustTemplate->setHelpers($_SESSION);
+		if (isset($_SESSION)) {
+            $mustTemplate->setHelpers($_SESSION);
+        }
 		$mustTemplate->addHelper("errors", $this->errors);
 		$mustTemplate->addHelper("messages", $this->messages);
 		if ($this->debug) {

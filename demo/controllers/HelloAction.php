@@ -13,4 +13,9 @@ class HelloAction extends Controller {
         return "JSON";
     }
 
+    public function myname() {
+        $this->setAttribute("name", "BINGO");
+        return "hello";
+    }
+
 }
