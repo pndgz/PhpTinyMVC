@@ -1,5 +1,7 @@
 <?php
 
+namespace PhpTinyMVC;
+
 class Pager {
 	private $page = 1;
 	private $size = 8;

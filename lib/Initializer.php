@@ -1,5 +1,7 @@
 <?php
 
+namespace PhpTinyMVC;
+
 class Initializer {
 	
 	public static $debug = false;

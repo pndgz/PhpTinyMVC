@@ -1,5 +1,7 @@
 <?php
 
+namespace PhpTinyMVC;
+
 require_once("Mustache.php");
 
 class Controller {

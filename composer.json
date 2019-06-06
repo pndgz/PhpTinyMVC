@@ -2,11 +2,19 @@
     "name": "gordondu/php-tiny-mvc",
     "description": "Php Tiny MVC",
     "type": "library",
+    "homepage": "https://github.com/pndgz/php-tiny-mvc",
+    "license": "MIT",
+    "require": {
+        "php": ">=5.3.0"
+    },
     "authors": [
         {
             "name": "pndgz",
             "email": "pndgz@163.com"
         }
     ],
-    "require": {}
+    "minimum-stability": "dev",
+    "autoload": {
+        "files": [ "TinyMVC.php" ]
+    }
 }

@@ -1,5 +1,7 @@
 <?php
 
+namespace PhpTinyMVC;
+
 class Router {
 	private $entry;
 	private $controller;

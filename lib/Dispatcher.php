@@ -1,5 +1,7 @@
 <?php
 
+namespace PhpTinyMVC;
+
 class Dispatcher {
 	
 	public static function dispatch() {
