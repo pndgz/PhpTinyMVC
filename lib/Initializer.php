@@ -53,12 +53,17 @@ class Initializer {
 		}
 		$itcpt = str_replace('/', DIRECTORY_SEPARATOR, ROOT_PATH . self::$settings["itcpt"]);
 		$mvc_include_path .= PATH_SEPARATOR . $itcpt;
-		$dirs = scandir($itcpt);
-		foreach ($dirs as $item) {
-			if (substr($item, 0, 1) != "." && is_dir($itcpt . DIRECTORY_SEPARATOR . $item)) {
-				$mvc_include_path .= PATH_SEPARATOR . $itcpt . DIRECTORY_SEPARATOR . $item;
-			}
-		}
+		if (file_exists($itcpt)) {
+            $dirs = scandir($itcpt);
+            foreach ($dirs as $item) {
+                if (substr($item, 0, 1) != "." && is_dir($itcpt . DIRECTORY_SEPARATOR . $item)) {
+                    $mvc_include_path .= PATH_SEPARATOR . $itcpt . DIRECTORY_SEPARATOR . $item;
+                }
+            }
+        }
+        if (Initializer::$debug) {
+            echo("[mvc] " . $mvc_include_path . "<br/>");
+        }
 		set_include_path($mvc_include_path);
 		spl_autoload_register(function ($className) {
 			$filename = str_replace('\\', DIRECTORY_SEPARATOR, $className) . '.php';
