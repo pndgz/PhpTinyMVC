@@ -111,16 +111,16 @@ class Controller {
 	
 	public function renderMustache($module) {
 		$mustTemplate = new Mustache_Engine();
-		$mustacheLoader = new Mustache_Loader_FilesystemLoader(ROOT_PATH . Initializer::$settings["templates"], array("extension" => Initializer::$settings["extension"]));
+		$mustacheLoader = new Mustache_Loader_FilesystemLoader(Initializer::$ROOT_PATH . Initializer::$settings["templates"], array("extension" => Initializer::$settings["extension"]));
 		$mustTemplate->setLoader($mustacheLoader);
 		$partialsLoader = new Mustache_Loader_CascadingLoader();
 		if (is_array(Initializer::$settings["partials"])) {
 			foreach(Initializer::$settings["partials"] as $partial) {
-				$partialLoader = new Mustache_Loader_FilesystemLoader(ROOT_PATH . $partial, array("extension" => Initializer::$settings["extension"]));
+				$partialLoader = new Mustache_Loader_FilesystemLoader(Initializer::$ROOT_PATH . $partial, array("extension" => Initializer::$settings["extension"]));
 				$partialsLoader->addLoader($partialLoader);
 			}
 		} else {
-			$partialLoader = new Mustache_Loader_FilesystemLoader(ROOT_PATH . Initializer::$settings["partials"], array("extension" => Initializer::$settings["extension"]));
+			$partialLoader = new Mustache_Loader_FilesystemLoader(Initializer::$ROOT_PATH . Initializer::$settings["partials"], array("extension" => Initializer::$settings["extension"]));
 			$partialsLoader->addLoader($partialLoader);
 		}
 		$mustTemplate->setPartialsLoader($partialsLoader);

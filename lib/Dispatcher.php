@@ -18,6 +18,10 @@ class Dispatcher {
 		$action = $router->getAction();
 		try {
 			$class_name = $controller . Initializer::$settings["suffix"];
+			if (!class_exists($class_name)) {
+			    echo "$class_name No Found.";
+			    return;
+            }
 			$app_dispatch_caller = new $class_name();
 			$app_dispatch_caller->setRouter($router);
 			$app_dispatch_caller->setAttribute("indexEntry", $router->getEntry());

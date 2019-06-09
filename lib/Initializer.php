@@ -5,6 +5,8 @@ namespace PhpTinyMVC;
 class Initializer {
 	
 	public static $debug = false;
+
+	public static $ROOT_PATH = '';
 	
 	public static $settings = array(
 		"path" => "/controllers",
@@ -19,6 +21,8 @@ class Initializer {
 	public static $interceptors = array();
 	
 	public static function initialize($settings = array()) {
+        $trace = debug_backtrace();
+        self::$ROOT_PATH = dirname($trace[0]['file']);
 		if (isset($settings["path"])) {
 			self::$settings["path"] = $settings["path"];
 		}
@@ -43,7 +47,7 @@ class Initializer {
 		if (isset($settings["debug"])) {
 			self::$debug = $settings["debug"];
 		}
-		$base = str_replace('/', DIRECTORY_SEPARATOR, ROOT_PATH . self::$settings["path"]);
+		$base = str_replace('/', DIRECTORY_SEPARATOR, self::$ROOT_PATH . self::$settings["path"]);
 		$mvc_include_path = __DIR__ . PATH_SEPARATOR . $base;
 		$dirs = scandir($base);
 		foreach ($dirs as $item) {
@@ -51,7 +55,7 @@ class Initializer {
 				$mvc_include_path .= PATH_SEPARATOR . $base . DIRECTORY_SEPARATOR . $item;
 			}
 		}
-		$itcpt = str_replace('/', DIRECTORY_SEPARATOR, ROOT_PATH . self::$settings["itcpt"]);
+		$itcpt = str_replace('/', DIRECTORY_SEPARATOR, self::$ROOT_PATH . self::$settings["itcpt"]);
 		$mvc_include_path .= PATH_SEPARATOR . $itcpt;
 		if (file_exists($itcpt)) {
             $dirs = scandir($itcpt);
