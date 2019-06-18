@@ -61,8 +61,10 @@ class Controller {
 		$this->jsonResult[$name] = $value;
 	}
 
-	public function addJsonArray($name, $array) {
-        $this->jsonResult[$name] = array_map(function($item){return $item->to_array();}, $array);
+	public function addJsonArray($name, $array, $options = array()) {
+        $this->jsonResult[$name] = array_map(function($item) use ($options) {
+            return $item->to_array($options);
+        }, $array);
     }
 	
 	public function getJsonData() {
